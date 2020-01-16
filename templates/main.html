@@ -1,0 +1,46 @@
+{% extends "app.html" %}
+{% block content %}
+<script>
+var progressVal = 0;
+function progress() {
+    progressVal = 0;
+	document.getElementById("progress").textContent = "Won't take >10Mins";
+    setTimeout(progressContinue, 1000);
+}
+
+function progressContinue() {
+    document.getElementById("progress").style.width = progressVal++ + "%";
+    setTimeout(progressContinue, 1500);
+}
+</script>
+<div class="wrapper">
+	<section class="_content">
+		<center><img src="../static/nielsen.png"/></center>
+		
+<br/>
+<div class="progress">
+    <div id="progress" class="progress-bar progress-style" role="progressbar"></div>
+</div>
+
+<form id="form1" method="POST">
+                  <h1>TLSWebScanner</h1>
+                  <div>
+                    <input type="text" name="hostName" required="" class="form-control" placeholder="Hostname" />
+                  </div>
+                  <div style="margin-bottom: 20px;">
+                    <input type="number" min="0" max="65535" value="443" name="portNo" required="" class="form-control" />
+                  </div>
+                    <strong style="color:#c00">
+
+		{% for message in get_flashed_messages() %}
+  			<label ID="err_msg">{{ message }}</label>
+      		{% endfor %}
+
+		    </strong>
+                  <div>
+                    <input type="submit" class="btn btn-default submit" value="Scan it!"  onclick="progress()" />
+                  </div>
+</form>
+</div>
+                  <div class="clearfix"></div>
+{% endblock %}

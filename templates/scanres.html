@@ -1,0 +1,13 @@
+{% extends "app.html" %}
+{% block content %}
+&nbsp;<br/><br/>
+<center><img src="../static/nielsen.png" /><br/><h2>Scan Result</h2></center>
+{% for message in get_flashed_messages() %}
+<label class="err_msg">{{ message }}</label>
+{% endfor %}
+<div style="margin: 0% 5%">
+{{ result | safe }}
+</div>
+<hr>
+<center><a href="/download/" class="btn btn-info">Download This Result</a>&nbsp;&nbsp;<a href="" class="btn btn-warning submit">Initiate a New Scan</a></center><br/>
+{% endblock %}
